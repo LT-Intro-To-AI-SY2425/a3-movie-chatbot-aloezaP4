@@ -174,8 +174,8 @@ def actors_by_title(matches: List[str]) -> List[str]:
     for movie in movie_db:
         curr=get_title(movie)
         if curr==title:
-            result.append(get_actors(movie))
-    print(result)
+            result = get_actors(movie)
+    return result
 
 
 def year_by_title(matches: List[str]) -> List[int]:
@@ -187,7 +187,16 @@ def year_by_title(matches: List[str]) -> List[int]:
     Returns:
         a list of one item (an int), the year that the movie was made
     """
-    pass
+    title = movie[0]
+    result =[]
+    for movie in movie_db:
+        curr =get_title(movie)
+        if curr==title:
+            result.append(get_year(movie))
+    return result
+        
+
+
 
 
 def title_by_actor(matches: List[str]) -> List[str]:

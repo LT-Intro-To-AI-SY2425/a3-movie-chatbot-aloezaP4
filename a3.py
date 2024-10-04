@@ -187,7 +187,7 @@ def year_by_title(matches: List[str]) -> List[int]:
     Returns:
         a list of one item (an int), the year that the movie was made
     """
-    title = movie[0]
+    title = matches[0]
     result =[]
     for movie in movie_db:
         curr =get_title(movie)
@@ -208,8 +208,12 @@ def title_by_actor(matches: List[str]) -> List[str]:
     Returns:
         a list of movie titles that the actor acted in
     """
-    pass
-
+    result=[]
+    actor=matches[0]
+    for movie in movie_db:
+        if actor in get_actors(movie):
+            result.append(get_title(movie))
+    return result
 
 # dummy argument is ignored and doesn't matter
 def bye_action(dummy: List[str]) -> None:

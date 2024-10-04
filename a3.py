@@ -151,7 +151,13 @@ def title_by_director(matches: List[str]) -> List[str]:
     Returns:
         a list of movies titles directed by the passed in director
     """
-    pass
+    result=[]
+    dir = matches[0]
+    for movie in movie_db:
+        curr=get_director(movie)
+        if curr==dir:
+            result.append(get_title(movie))
+    return result
 
 
 def actors_by_title(matches: List[str]) -> List[str]:
@@ -163,7 +169,13 @@ def actors_by_title(matches: List[str]) -> List[str]:
     Returns:
         a list of actors who acted in the passed in title
     """
-    pass
+    title=matches[0]
+    result=[]
+    for movie in movie_db:
+        curr=get_title(movie)
+        if curr==title:
+            result.append(get_actors(movie))
+    print(result)
 
 
 def year_by_title(matches: List[str]) -> List[int]:

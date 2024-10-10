@@ -123,6 +123,15 @@ def title_after_year(matches: List[str]) -> List[str]:
             result.append(get_title(movie))
     return result
 
+def directors_by_year(matches: List[str]) -> List[str]:
+    year= matches[0]
+    result=[]
+    for movie in movie_db:
+        ye=get_year(movie)
+        if ye==year:
+            result.append(get_director(movie))
+    return result
+
 
 def director_by_title(matches: List[str]) -> List[str]:
     """Finds director of movie based on title
@@ -215,6 +224,8 @@ def title_by_actor(matches: List[str]) -> List[str]:
             result.append(get_title(movie))
     return result
 
+ 
+
 # dummy argument is ignored and doesn't matter
 def bye_action(dummy: List[str]) -> None:
     raise KeyboardInterrupt
@@ -227,6 +238,7 @@ pa_list: List[Tuple[List[str], Callable[[List[str]], List[Any]]]] = [
     (str.split("what movies were made between _ and _"), title_by_year_range),
     (str.split("what movies were made before _"), title_before_year),
     (str.split("what movies were made after _"), title_after_year),
+    (str.split("who directed in _"), directors_by_year),
     # note there are two valid patterns here two different ways to ask for the director
     # of a movie
     (str.split("who directed %"), director_by_title),
@@ -256,7 +268,10 @@ def search_pa_list(src: List[str]) -> List[str]:
         mat= match(pattern,src)
         if mat!=None:
             result = (action(mat))
-            return result
+            if result:
+                return result
+            return ["No answers"]
+        
         
         
             
